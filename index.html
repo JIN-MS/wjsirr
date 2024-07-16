@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: red; /* 제목 색상을 빨간색으로 설정 */
+        }
+        #guess-input {
+            width: 50px;
+            text-align: center;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <p>1에서 100 사이의 숫자를 맞춰보세요.</p>
+    <input type="number" id="guess-input" min="1" max="100">
+    <button onclick="checkGuess()">제출</button>
+    <p id="result"></p>
+
+    <script>
+        // 정답 설정
+        const answer = Math.floor(Math.random() * 100) + 1;
+        console.log(answer);  // 정답 확인용
+
+        function checkGuess() {
+            // 사용자 입력 가져오기
+            const guess = parseInt(document.getElementById('guess-input').value);
+
+            // 입력이 유효한지 확인
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                alert('1에서 100 사이의 숫자를 입력하세요.');
+                return;
+            }
+
+            // 정답 확인
+            if (guess === answer) {
+                document.getElementById('result').innerHTML = '정답입니다! 축하합니다!';
+            } else if (guess < answer) {
+                document.getElementById('result').innerHTML = '너무 작습니다. 다시 시도하세요.';
+            } else {
+                document.getElementById('result').innerHTML = '너무 큽니다. 다시 시도하세요.';
+            }
+        }
+    </script>
+</body>
+</html>
